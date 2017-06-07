@@ -9,6 +9,7 @@ output:
     ratio: 16x10
 ---
 
+
 ## An Introduction to Data Science
 
 > Using Data Sets for Analytics
@@ -46,6 +47,9 @@ upon the material) for any purpose, even commercially.
 * Software and Data Carpentry instructor
 
 More details: https://lgatto.github.io/about/
+
+
+# Data analysis
 
 ## Data analysis
 
@@ -92,6 +96,9 @@ reflecting/investigating/analysing the data is the real challenge)
 * Be able to manipulate/visualise it
 * How good do we need to be? **Good enough**
 
+
+# Data
+
 ## Data
 
 - continuous
@@ -119,6 +126,8 @@ reflecting/investigating/analysing the data is the real challenge)
 ### Examples:
 - wrong encoding: typos, character vs numbers
 - missing values
+
+# Visualisation
 
 ## Visualisation
 
@@ -196,6 +205,9 @@ See also another, more recent example:
 
 ![The Datasaurus Dozen dataset](https://d2f99xq7vri1nk.cloudfront.net/DinoSequentialSmaller.gif)
 
+
+# Methodologies
+
 ## Methodologies
 
 - Data transformation
@@ -203,7 +215,6 @@ See also another, more recent example:
 - Hierarchical clustering
 - Dimensionality reduction
 - Supervised learning - classification
-- Regression
 
 
 ## Data transformation
@@ -233,6 +244,16 @@ par(mfrow = c(1, 2))
 plot(exprs(sample.ExpressionSet)[, 1:2], main = "Original data")
 plot(log2(exprs(sample.ExpressionSet)[, 1:2]), main = "log2 transformed")
 ```
+
+## Machine learning
+
+- *Unsupervised machine learning (clustering)* is the task of inferring
+  hidden structure from "unlabeled" data.
+- *Supervised machine learning (classification)* is the problem of
+  identifying to which of a set of categories (sub-populations) a new
+  observation belongs
+
+(From Wikipedia)
 
 ## Hierarchical clustering
 
@@ -353,7 +374,8 @@ points(cl$centers, col = 1:5, pch = 8)
 
 ## Supervised learning - classification
 
-## Regression
+
+# Tools
 
 ## Data analysis tools
 
