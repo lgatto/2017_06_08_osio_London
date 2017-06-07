@@ -24,7 +24,6 @@ Slides: http://bit.ly/20170608osio
 
 ```
 ```
-
 Last update `r date()`
 
 ##
