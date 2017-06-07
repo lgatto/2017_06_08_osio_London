@@ -6,7 +6,7 @@ https://lgatto.github.io           University of Cambridge
 lg390@cam.ac.uk                    @lgatt0
 ```
 
-Slides: http://bit.ly/20170608osio
+Slides: [http://bit.ly/20170608osio](https://rawgit.com/lgatto/2017_06_08_osio_London/master/slides.html)
 
 ### License
 
