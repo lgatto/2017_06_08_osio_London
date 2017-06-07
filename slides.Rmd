@@ -25,6 +25,8 @@ Slides: http://bit.ly/20170608osio
 ```
 ```
 
+Last update `r date()`
+
 ##
 
 These slides are available under a
@@ -93,6 +95,14 @@ reflecting/investigating/analysing the data is the real challenge)
 
 ## Data
 
+- continuous
+- categorical
+- character
+- integers, floats
+- follows a certain distribution
+
+## Data
+
 - spread sheets, databases
 - text based, binary (requires special libraries to read)
 - csv, json, XML
@@ -101,12 +111,13 @@ reflecting/investigating/analysing the data is the real challenge)
 - tidy or messy
 - known or new
 
+
 ## Data cleaning
 
 > The time spent (wasted?) into cleaning up messy data is often
 > greater than the time spen in actually analysing the data.
 
-Examples:
+### Examples:
 - wrong encoding: typos, character vs numbers
 - missing values
 
@@ -201,6 +212,28 @@ See also another, more recent example:
 - centering
 - scaling
 - log-scale
+- binning
+- normalisation (removing technical variation)
+
+## { .fullpage }
+
+```{r scale, echo=FALSE, fig.width=14, fig.height=7}
+set.seed(1L)
+x <- cbind(rnorm(10), rnorm(10, 10, 10), rnorm(5, 0.1))
+par(mfrow = c(1, 2))
+boxplot(x, main = "Original data")
+boxplot(scale(x), main = "Scaled and centered")
+```
+
+## { .fullpage }
+
+```{r log, echo=FALSE, warning=FALSE, fig.width=14, fig.height=7}
+suppressPackageStartupMessages(library(Biobase))
+data(sample.ExpressionSet)
+par(mfrow = c(1, 2))
+plot(exprs(sample.ExpressionSet)[, 1:2], main = "Original data")
+plot(log2(exprs(sample.ExpressionSet)[, 1:2]), main = "log2 transformed")
+```
 
 ## Hierarchical clustering
 
@@ -270,7 +303,59 @@ It is important to adapt these for different data.
 ## { .fullpage }
 
 ![t-SNE params](./Figures/tsnesplots-1.png)
-                  
+
+## K-means
+
+Starting with a pre-specified number of cluster (random) centres, each
+point is initally assigned to its nearest centre. In the next step,
+the centres are moved to the centroid of the clustered points. The
+points are then reassigned to their nearest centre. The process is
+repeated until moving the centres derives little or no improvement
+(measured by the within cluster sum of squares - the total squared
+distance between each point and its cluster centre). 
+
+Source: [Clustering with Scikit with GIFs](https://dashee87.github.io/data%20science/general/Clustering-with-Scikit-with-GIFs/)
+
+## { .fullpage }
+
+![kmeans gif](https://dashee87.github.io/images/kmeans.gif)
+
+## { .fullpage }
+
+```{r kmeans, echo=FALSE, fig.width=12, fig.height=4}
+set.seed(1L)
+x <- rbind(matrix(rnorm(100, sd = 0.3), ncol = 2),
+           matrix(rnorm(100, mean = 1, sd = 0.3), ncol = 2))
+par(mfrow = c(1, 3))
+colnames(x) <- c("x", "y")
+plot(x, main = "Original data")
+cl <- kmeans(x, 2)
+plot(x, col = cl$cluster, main = "2 clusters")
+points(cl$centers, col = 1:2, pch = 8, cex = 2)
+cl <- kmeans(x, 5, nstart = 25)
+plot(x, col = cl$cluster, main = "5 clusters")
+points(cl$centers, col = 1:5, pch = 8)
+```
+
+## { .fullpage }
+
+```{r kmeans2, echo=FALSE, fig.width=12, fig.height=4}
+par(mfrow = c(1, 3))
+x <- matrix(rnorm(100), ncol = 2)
+colnames(x) <- c("x", "y")
+plot(x, main = "Random data")
+cl <- kmeans(x, 2)
+plot(x, col = cl$cluster, main = "2 clusters")
+points(cl$centers, col = 1:2, pch = 8, cex = 2)
+cl <- kmeans(x, 5, nstart = 25)
+plot(x, col = cl$cluster, main = "5 clusters")
+points(cl$centers, col = 1:5, pch = 8)
+```
+
+## Supervised learning - classification
+
+## Regression
+
 ## Data analysis tools
 
 should enables you to **manipulate** your data, give some guarantees
@@ -290,5 +375,7 @@ about the **integrity** of the data, support effective
 
 ## Tools
 
-- R
-- Python
+- R and RStudio
+- Python 
+- Jupyter notebooks
+
