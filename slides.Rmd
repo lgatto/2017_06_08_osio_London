@@ -211,6 +211,45 @@ See also another, more recent example:
 
 ![The Datasaurus Dozen dataset](https://d2f99xq7vri1nk.cloudfront.net/DinoSequentialSmaller.gif)
 
+## From data to figure
+
+An example for the [Data Carpentry R](http://www.datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html#plotting_time_series_data) course. 
+
+Ecological surveys data: visualisating the number of captures of each
+species and each sex over time.
+
+## { .fullpage }
+
+
+| record_id | month | day | year | species_id | sex | weight | hindfoot_length |
+|:---------:|:-----:|:---:|:----:|:----------:|:---:|:------:|:---------------:|
+|    934    |   5   | 19  | 1978 |     DS     |  F  |  114   |       47        |
+|   8637    |  11   | 13  | 1983 |     OL     |  M  |   39   |       20        |
+|   26755   |   7   | 30  | 1997 |     DM     |  M  |   47   |       35        |
+|   32080   |   5   | 26  | 2001 |     NL     |  F  |  205   |       32        |
+|   17624   |   6   | 22  | 1990 |     DO     |  M  |   48   |       37        |
+|   17196   |   2   | 25  | 1990 |     RM     |  M  |   9    |       17        |
+|   8808    |  12   |  9  | 1983 |     DM     |  F  |   32   |       35        |
+|   17972   |  11   | 10  | 1990 |     DM     |  M  |   39   |       36        |
+
+## { .fullpage }
+
+
+| year | species_id | sex | n  |
+|:----:|:----------:|:---:|:--:|
+| 1978 |     PM     |  F  | 1  |
+| 2001 |     DO     |  M  | 46 |
+| 1994 |     PF     |  F  | 43 |
+| 1979 |     RM     |  M  | 3  |
+| 1990 |     DO     |  M  | 99 |
+| 1989 |     PF     |  M  | 5  |
+| 1987 |     PF     |  F  | 2  |
+| 2002 |     PF     |  M  | 9  |
+
+## { .fullpage }
+
+![ggplot2 example](./Figures/ggplot2.png)
+
 
 # Methodologies
 
@@ -380,6 +419,63 @@ points(cl$centers, col = 1:5, pch = 8)
 
 ## Supervised learning - classification
 
+*Supervised machine learning (classification)* is the problem of
+identifying to which of a set of categories (sub-populations) a new
+observation belongs.
+
+We have a set of annotated or labelled data points, for which the
+category (class) is known, and unlabelled data, for which we want to
+infer the most probably class.
+
+## { .fullpage }
+
+```{r iris, echo=FALSE}
+## data
+set.seed(1L)
+tr <- sample(150, 100)
+.pca <- prcomp(iris[, 1:4])$x
+plot(.pca, main = "Iris")
+points(.pca[tr, ], col = as.numeric(iris[tr, "Species"])+1,
+       pch = 19, cex = 1.1)
+legend("topright", levels(iris[tr, "Species"]),
+       pch = 19, col = 2:4, bty = "n")
+```
+
+## { .fullpage }
+
+Classification is performed in 2 steps
+
+1. Train a classifier, tune its parameters (build a classification
+   model) using labelled data.
+2. Use the model to classify unlabelled data.
+
+## Nearest neighbours - kNN
+
+The class of each unlabelled example, is defined by performing a
+majority vote using the classes of its *k* nearest neighbours.
+
+What value of *k* should we use?
+
+(Images on next slides are from
+[An Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/))
+
+## { .fullpage }
+
+![Choosing k](./Figures/ISL-2_16.png)
+
+## Cross-validation
+
+1. We test a range a possible values for *k* and check how well they
+   perform.
+2. To assess the performance, we use the labelled data. 80% are used
+   to train a classifier (**training data**), and the remaining 20% are
+   considered unlabelled and re-classified (**test data**).
+3. By comparing to obtained and the expected labels, we can assess the
+   error rate or **classification accuracy**.
+
+## { .fullpage }
+
+![Bias variance tradeoff](./Figures/ISL-2_17.png)
 
 # Tools
 
