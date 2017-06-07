@@ -215,8 +215,8 @@ See also another, more recent example:
 
 An example for the [Data Carpentry R](http://www.datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html#plotting_time_series_data) course. 
 
-Ecological surveys data: visualisating the number of captures of each
-species and each sex over time.
+*Ecological surveys data*: visualisation of the number of captures of
+each species and each sex over time.
 
 ## { .fullpage }
 
@@ -287,7 +287,9 @@ suppressPackageStartupMessages(library(Biobase))
 data(sample.ExpressionSet)
 par(mfrow = c(1, 2))
 plot(exprs(sample.ExpressionSet)[, 1:2], main = "Original data")
+grid()
 plot(log2(exprs(sample.ExpressionSet)[, 1:2]), main = "log2 transformed")
+grid()
 ```
 
 ## Machine learning
@@ -423,9 +425,9 @@ points(cl$centers, col = 1:5, pch = 8)
 identifying to which of a set of categories (sub-populations) a new
 observation belongs.
 
-We have a set of annotated or labelled data points, for which the
-category (class) is known, and unlabelled data, for which we want to
-infer the most probably class.
+We have a set of annotated or **labelled data** points, for which the
+category (class) is known, and **unlabelled data**, for which we want
+to infer the most probably class.
 
 ## { .fullpage }
 
@@ -451,10 +453,10 @@ Classification is performed in 2 steps
 
 ## Nearest neighbours - kNN
 
-The class of each unlabelled example, is defined by performing a
-majority vote using the classes of its *k* nearest neighbours.
-
-What value of *k* should we use?
+* The class of each unlabelled example, is defined by performing a
+  majority vote using the classes of its *k* nearest (labelled)
+  neighbours.
+* What value of *k* should we use?
 
 (Images on next slides are from
 [An Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/))
@@ -470,8 +472,9 @@ What value of *k* should we use?
 2. To assess the performance, we use the labelled data. 80% are used
    to train a classifier (**training data**), and the remaining 20% are
    considered unlabelled and re-classified (**test data**).
-3. By comparing to obtained and the expected labels, we can assess the
-   error rate or **classification accuracy**.
+3. By comparing to obtained and the expected labels in the test data,
+   we can assess the error rate or **classification accuracy** for
+   each value of *k* and chose the *best* one.
 
 ## { .fullpage }
 
@@ -500,5 +503,20 @@ about the **integrity** of the data, support effective
 
 - R and RStudio
 - Python 
-- Jupyter notebooks
+
+## `R` demo
+
+```{r demo, eval=FALSE}
+data(iris)
+head(iris)
+pca <- prcomp(iris[, 1:4])
+plot(pca$x, col = iris$Species)
+data(iris3)
+tr <- 1:25
+te <- 26:50
+train <- rbind(iris3[tr,,1], iris3[tr,,2], iris3[tr,,3])
+test <- rbind(iris3[te,,1], iris3[te,,2], iris3[te,,3])
+cl <- factor(c(rep("s",25), rep("c",25), rep("v",25)))
+knn(train, test, cl, k = 3, prob = TRUE)
+```
 
