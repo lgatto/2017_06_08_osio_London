@@ -12,8 +12,6 @@ output:
 
 ## An Introduction to Data Science
 
-> Using Data Sets for Analytics
-
 ```
 Laurent Gatto                      Computational Proteomics Unit
 https://lgatto.github.io           University of Cambridge
@@ -48,6 +46,14 @@ upon the material) for any purpose, even commercially.
 
 More details: https://lgatto.github.io/about/
 
+
+## Content
+
+- Data analyis
+- Data
+- Visualisation
+- Methodologies
+- Tools
 
 # Data analysis
 
