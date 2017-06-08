@@ -109,7 +109,7 @@ reflecting/investigating/analysing the data is the real challenge)
 
 - continuous
 - categorical
-- character
+- text
 - integers, floats
 - follows a certain distribution
 
