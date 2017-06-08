@@ -251,6 +251,10 @@ each species and each sex over time.
 ![ggplot2 example](./Figures/ggplot2.png)
 
 
+## { .fullpage }
+
+![occupancy](./Figures/plotdays-1.png)
+
 # Methodologies
 
 ## Methodologies
