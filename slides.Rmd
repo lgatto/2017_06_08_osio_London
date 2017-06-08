@@ -119,7 +119,7 @@ reflecting/investigating/analysing the data is the real challenge)
 - text based, binary (requires special libraries to read)
 - csv, json, XML
 - big or small
-- structured on un-structured
+- structured or un-structured
 - tidy or messy
 - known or new
 
