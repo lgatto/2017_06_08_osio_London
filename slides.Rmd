@@ -122,16 +122,17 @@ reflecting/investigating/analysing the data is the real challenge)
 - structured or un-structured
 - tidy or messy
 - known or new
-
+- annotated with **meta-data**
 
 ## Data cleaning
 
 > The time spent (wasted?) into cleaning up messy data is often
-> greater than the time spen in actually analysing the data.
+> greater than the time spent in actually analysing the data.
 
 ### Examples:
+- acquisition problems, including manual encoding
 - wrong encoding: typos, character vs numbers
-- missing values
+- missing values: `0`, `""`, `NA`, `NULL`, `-INF`, 
 
 # Visualisation
 
@@ -260,10 +261,9 @@ each species and each sex over time.
 ## Methodologies
 
 - Data transformation
-- Unsupervised learning - clustering
-- Hierarchical clustering
-- Dimensionality reduction
-- Supervised learning - classification
+- Unsupervised learning - clustering (hierarchical clustering, kmeans)
+- Dimensionality reduction (PCA, t-SNE)
+- Supervised learning - classification (kNN)
 
 
 ## Data transformation
@@ -317,6 +317,54 @@ clustering algorithms that can be used.
 
 ![Hierarchical clustering](./Figures/hclust-1.png)
 
+
+## K-means
+
+Starting with a pre-specified number of cluster (random) centres, each
+point is initally assigned to its nearest centre. In the next step,
+the centres are moved to the centroid of the clustered points. The
+points are then reassigned to their nearest centre. The process is
+repeated until moving the centres derives little or no improvement
+(measured by the within cluster sum of squares - the total squared
+distance between each point and its cluster centre). 
+
+Source: [Clustering with Scikit with GIFs](https://dashee87.github.io/data%20science/general/Clustering-with-Scikit-with-GIFs/)
+
+## { .fullpage }
+
+![kmeans gif](https://dashee87.github.io/images/kmeans.gif)
+
+## { .fullpage }
+
+```{r kmeans, echo=FALSE, fig.width=12, fig.height=4}
+set.seed(1L)
+x <- rbind(matrix(rnorm(100, sd = 0.3), ncol = 2),
+           matrix(rnorm(100, mean = 1, sd = 0.3), ncol = 2))
+par(mfrow = c(1, 3))
+colnames(x) <- c("x", "y")
+plot(x, main = "Original data")
+cl <- kmeans(x, 2)
+plot(x, col = cl$cluster, main = "2 clusters")
+points(cl$centers, col = 1:2, pch = 8, cex = 2)
+cl <- kmeans(x, 5, nstart = 25)
+plot(x, col = cl$cluster, main = "5 clusters")
+points(cl$centers, col = 1:5, pch = 8)
+```
+
+## { .fullpage }
+
+```{r kmeans2, echo=FALSE, fig.width=12, fig.height=4}
+par(mfrow = c(1, 3))
+x <- matrix(rnorm(100), ncol = 2)
+colnames(x) <- c("x", "y")
+plot(x, main = "Random data")
+cl <- kmeans(x, 2)
+plot(x, col = cl$cluster, main = "2 clusters")
+points(cl$centers, col = 1:2, pch = 8, cex = 2)
+cl <- kmeans(x, 5, nstart = 25)
+plot(x, col = cl$cluster, main = "5 clusters")
+points(cl$centers, col = 1:5, pch = 8)
+```
 
 ## Dimensionality reduction
 
@@ -375,53 +423,6 @@ It is important to adapt these for different data.
 
 ![t-SNE params](./Figures/tsnesplots-1.png)
 
-## K-means
-
-Starting with a pre-specified number of cluster (random) centres, each
-point is initally assigned to its nearest centre. In the next step,
-the centres are moved to the centroid of the clustered points. The
-points are then reassigned to their nearest centre. The process is
-repeated until moving the centres derives little or no improvement
-(measured by the within cluster sum of squares - the total squared
-distance between each point and its cluster centre). 
-
-Source: [Clustering with Scikit with GIFs](https://dashee87.github.io/data%20science/general/Clustering-with-Scikit-with-GIFs/)
-
-## { .fullpage }
-
-![kmeans gif](https://dashee87.github.io/images/kmeans.gif)
-
-## { .fullpage }
-
-```{r kmeans, echo=FALSE, fig.width=12, fig.height=4}
-set.seed(1L)
-x <- rbind(matrix(rnorm(100, sd = 0.3), ncol = 2),
-           matrix(rnorm(100, mean = 1, sd = 0.3), ncol = 2))
-par(mfrow = c(1, 3))
-colnames(x) <- c("x", "y")
-plot(x, main = "Original data")
-cl <- kmeans(x, 2)
-plot(x, col = cl$cluster, main = "2 clusters")
-points(cl$centers, col = 1:2, pch = 8, cex = 2)
-cl <- kmeans(x, 5, nstart = 25)
-plot(x, col = cl$cluster, main = "5 clusters")
-points(cl$centers, col = 1:5, pch = 8)
-```
-
-## { .fullpage }
-
-```{r kmeans2, echo=FALSE, fig.width=12, fig.height=4}
-par(mfrow = c(1, 3))
-x <- matrix(rnorm(100), ncol = 2)
-colnames(x) <- c("x", "y")
-plot(x, main = "Random data")
-cl <- kmeans(x, 2)
-plot(x, col = cl$cluster, main = "2 clusters")
-points(cl$centers, col = 1:2, pch = 8, cex = 2)
-cl <- kmeans(x, 5, nstart = 25)
-plot(x, col = cl$cluster, main = "5 clusters")
-points(cl$centers, col = 1:5, pch = 8)
-```
 
 ## Supervised learning - classification
 
@@ -514,7 +515,7 @@ about the **integrity** of the data, support effective
 Statistical environment and programming language. RStudio integrated
 development environemnt. *Lingua franca* of
 statistics. State-of-the-art visualisation libraries (`ggplot2`) and
-data manipulation (`dplytr`) in addition to from-the-shelf
+data manipulation (`dplyr`) in addition to from-the-shelf
 capabilites. R and markdown integration for report generation.
 
 ## Python 
