@@ -513,16 +513,17 @@ about the **integrity** of the data, support effective
 ## R and RStudio
 
 Statistical environment and programming language. RStudio integrated
-development environemnt. *Lingua franca* of
+development environment. *Lingua franca* of
 statistics. State-of-the-art visualisation libraries (`ggplot2`) and
 data manipulation (`dplyr`) in addition to from-the-shelf
-capabilites. R and markdown integration for report generation.
+capabilities. R and markdown integration for report generation and
+notebooks.
 
 ## Python 
 
 General purpose programming language with library for machine learning
 (`scikit-learn`), data handling (`pandas`), plotting (`matplotlib`)
-and an interactive environemnt/notbook (`jupyter`).
+and an interactive environment/notebook (`jupyter`).
 
 ## `R` demo
 
